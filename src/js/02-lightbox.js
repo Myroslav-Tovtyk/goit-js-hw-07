@@ -1,22 +1,6 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
-const galleryContainer = document.querySelector(".gallery");
-const galleryMarkup = createGallery(galleryItems);
-galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
-
-galleryContainer.addEventListener('click', findImgAlt);
-
-function findImgAlt(e) {
-  return console.log(e.target.alt)
-}
-
-let lightbox = new SimpleLightbox('.gallery a', { 
-  captionsData: 'alt',  
-  captionType: "attr",
-  captionDelay: 250
-});
-
-lightbox.on("show.simplelightbox");
+const galleryContainerRef = document.querySelector(".gallery");
 
 function createGallery(galleryItems) {
   return galleryItems
@@ -30,5 +14,23 @@ function createGallery(galleryItems) {
         `
     }).join('');
 };
+
+galleryContainerRef.insertAdjacentHTML('beforeend', createGallery(galleryItems));
+
+galleryContainerRef.addEventListener('click', findImgAlt);
+
+function findImgAlt(e) {
+  e.preventDefault();
+}
+
+let lightbox = new SimpleLightbox('.gallery a', { 
+  captionsData: 'alt',  
+  captionType: "attr",
+  captionDelay: 250
+});
+
+lightbox.on("show.simplelightbox");
+
+
 
 

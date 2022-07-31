@@ -1,26 +1,7 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-const galleryContainer = document.querySelector(".gallery");
-const galleryMarkup = createGallery(galleryItems);
-galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
-
-galleryContainer.addEventListener("click", onGalleryContainerClick);
-
-function onGalleryContainerClick(e) {
-  e.preventDefault();
-  if (!e.target.classList.contains("gallery__image")) {
-    return;
-  };
-  const images = e.target.dataset.source;
-  
-  const instance = basicLightbox.create(
-    `
-    <img src="${images}" width="800" height="600">
-    `
-  );
-  instance.show();
-};
+const galleryContainerRef = document.querySelector(".gallery");
 
 function createGallery(galleryItems) {
   return galleryItems
@@ -39,4 +20,24 @@ function createGallery(galleryItems) {
         `
     }).join('');
 };
-// console.log(galleryContainer);
+
+galleryContainerRef.insertAdjacentHTML('beforeend', createGallery(galleryItems));
+
+function onGalleryContainerClick(e) {
+  e.preventDefault();
+  if (!e.target.classList.contains("gallery__image")) {
+    return;
+  };
+  const images = e.target.dataset.source;
+  
+  const instance = basicLightbox.create(
+    `
+    <img src="${images}" width="800" height="600">
+    `
+  );
+  instance.show();
+};
+
+galleryContainerRef.addEventListener("click", onGalleryContainerClick);
+
+
