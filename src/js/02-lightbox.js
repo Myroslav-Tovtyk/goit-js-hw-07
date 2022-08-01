@@ -17,11 +17,11 @@ function createGallery(galleryItems) {
 
 galleryContainerRef.insertAdjacentHTML('beforeend', createGallery(galleryItems));
 
-galleryContainerRef.addEventListener('click', findImgAlt);
+// galleryContainerRef.addEventListener('click', findImgAlt);
 
-function findImgAlt(e) {
-  e.preventDefault();
-}
+// function findImgAlt(e) {
+//   e.preventDefault();
+// }
 
 let lightbox = new SimpleLightbox('.gallery a', { 
   captionsData: 'alt',  
